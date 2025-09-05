@@ -6,7 +6,7 @@ A clean, minimalist notepad application built with only HTML and CSS. This proje
 
 Here's a look at the application in action.
 
-## **![][image1]**
+## <img width="1364" height="684" alt="Screenshot " src="https://github.com/user-attachments/assets/25cfa596-19f3-4edf-a018-e45b844476c1" />
 
 ## 
 
