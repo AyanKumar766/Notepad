@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notepad with Dark Mode</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hidden toggle checkbox -->
+  <input type="checkbox" id="theme-toggle-checkbox" class="theme-toggle-input">
+
+  <div class="page-wrapper">
+    <div class="notepad-container">
+      <header>
+        <h1>My Notepad</h1>
+        <!-- Toggle button -->
+        <label for="theme-toggle-checkbox" class="theme-toggle-label"></label>
+      </header>
+
+      <main>
+        <textarea id="note" placeholder="Write your notes here..."></textarea>
+      </main>
+
+      <footer>
+        <!-- Save button -->
+        <button class="save-button" onclick="saveNote()">
+          <img src="./save.png" alt="Save" />
+          Save
+        </button>
+
+        <!-- Print button -->
+        <button class="print-button" onclick="window.print()">
+          <img src="./print.png" alt="Print" />
+          Print
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    function saveNote() {
+      const text = document.getElementById("note").value;
+      const blob = new Blob([text], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "note.txt";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+/* ===========================
+   RESET + BASE
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Light theme */
+    --bg: #f0f2f5;
+    --container-bg: #ffffff;
+    --line: #dddddd;
+    --border: #e0e0e0;
+    --text: #333333;
+    --header-footer-border: #e0e0e0;
+    --btn: #007bff;
+    --btn-hover: #0056b3;
+
+    /* Dark theme */
+    --bg-dark: #1a1a1a;
+    --container-bg-dark: #2c2c2c;
+    --line-dark: #444444;
+    --border-dark: #444444;
+    --text-dark: #e0e0e0;
+    --btn-dark: #0a84ff;
+    --btn-dark-hover: #0060c4;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* ===========================
+   PAGE WRAPPER
+=========================== */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg);
+    transition: background-color 0.4s ease;
+}
+
+/* ===========================
+   DARK MODE (Checkbox Driven)
+=========================== */
+#theme-toggle-checkbox:checked ~ .page-wrapper {
+    background-color: var(--bg-dark);
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper .notepad-container {
+    background-color: var(--container-bg-dark);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper header,
+#theme-toggle-checkbox:checked ~ .page-wrapper footer {
+    border-color: var(--border-dark);
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper h1,
+#theme-toggle-checkbox:checked ~ .page-wrapper textarea {
+    color: var(--text-dark);
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper textarea {
+    background-color: var(--container-bg-dark);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 29px,
+        var(--line-dark) 30px
+    );
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper .theme-toggle-label {
+    background-color: #555;
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper .theme-toggle-label::after {
+    transform: translateX(23px);
+    background-image: url("./moon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper .save-button,
+#theme-toggle-checkbox:checked ~ .page-wrapper .print-button {
+    background-color: var(--btn-dark);
+}
+
+#theme-toggle-checkbox:checked ~ .page-wrapper .save-button:hover,
+#theme-toggle-checkbox:checked ~ .page-wrapper .print-button:hover {
+    background-color: var(--btn-dark-hover);
+}
+
+/* ===========================
+   THEME TOGGLE SWITCH
+=========================== */
+.theme-toggle-input {
+    display: none;
+}
+
+.theme-toggle-label {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background-color: #bebebe;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle-label::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 3px;
+    left: 4px;
+    background-color: white;
+
+    /* 🌞 Light mode icon */
+    background-image: url("./sun.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    transition: transform 0.3s ease;
+}
+
+/* ===========================
+   NOTEPAD
+=========================== */
+.notepad-container {
+    width: 350px;
+    height: 500px;
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+header,
+footer {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    border-color: var(--header-footer-border);
+    transition: border-color 0.4s ease;
+}
+header { border-bottom: 1px solid; justify-content: space-between; }
+footer { border-top: 1px solid; justify-content: flex-end; gap: 10px; }
+
+h1 {
+    font-size: 1.2rem;
+    color: var(--text);
+    transition: color 0.4s ease;
+}
+
+main { flex-grow: 1; display: flex; }
+
+textarea {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    line-height: 30px;
+    color: var(--text);
+    background-color: var(--container-bg);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 29px,
+        var(--line) 30px
+    );
+    background-size: 100% 30px;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ===========================
+   BUTTONS (Save + Print)
+=========================== */
+.print-button,
+.save-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: var(--btn);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.print-button img,
+.save-button img {
+    width: 16px;
+    height: 16px;
+}
+
+.print-button:hover,
+.save-button:hover {
+    background-color: var(--btn-hover);
+}
+
+/* ===========================
+   PRINT STYLES
+=========================== */
+@media print {
+    .theme-toggle-label,
+    .print-button,
+    .save-button {
+        display: none;
+    }
+    body {
+        background-color: #fff;
+    }
+    .notepad-container {
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
